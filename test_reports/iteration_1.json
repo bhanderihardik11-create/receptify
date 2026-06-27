@@ -1,0 +1,39 @@
+{
+  "summary": "Phase 1 testing complete for Receptify (Next.js + FastAPI + PostgreSQL). 18/18 backend pytest cases pass against external preview URL. Frontend smoke tests pass: landing, login, dashboard (KPIs + 32 chart SVGs), sidebar nav (all 10+ items present), customers list (10 seeded), templates, billing (3 plan cards), compliance, scripts, analytics, campaign wizard, logout + protected-route redirect (/dashboard -> /login?next=/dashboard). One environment-level issue encountered: the entire stack (supervisord daemon, postgres binaries, db cluster) had to be recovered manually mid-run — see RCA.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/auth/me", "issue": "Returns 200 with {user:null} when unauthenticated instead of 401. Not breaking (middleware enforces page-level auth) but inconsistent with REST conventions."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Dashboard initial paint", "issues": ["Brief skeleton-loader flash for ~2s after login (acceptable)."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_receptify_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Make /api/auth/me return 401 when no auth cookie (optional consistency).",
+    "Persist PostgreSQL binaries + data directory across container restarts (infra). See RCA below."
+  ],
+  "critical_code_review_comments": [
+    "data-source.ts both exports `AppDataSource` (named) and `default` — TypeORM CLI rejects this (`Given data source file must contain only one export of DataSource instance`). `yarn db:migrate` fails as a result; the seed script bypasses by calling `runMigrations()` programmatically. Recommend keeping only the default export (or only the named) so CLI migration commands work.",
+    "Mock calling engine works as designed: launching a campaign produces Call rows that transition queued->ringing->in_progress->terminal in 1-2s each. Verified via API.",
+    "All interactive elements expose data-testid where checked (login form, logout button)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_receptify_api.py (new file)"
+  ],
+  "success_rate": {"backend": "100% (18/18)", "frontend": "~95% (all critical flows verified)"},
+  "test_credentials": "demo@receptify.in / Demo@1234 (seeded). /app/memory/test_credentials.md was MISSING — please create it.",
+  "seed_data_creation": "Re-ran `yarn db:seed` after recovering PostgreSQL — billing plans, 9 templates, demo user, 10 customers seeded.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend tests live at /app/backend/tests/test_receptify_api.py and are runnable via `pytest backend/tests/test_receptify_api.py -v`. Demo credentials demo@receptify.in / Demo@1234. The mock calling pipeline needs ~3-6s sleep after launching a campaign before asserting on call status transitions.",
+  "rca of the issue": "Mid-run the container appeared to be reset: supervisord daemon was killed, /var/lib/postgresql + /etc/postgresql + /usr/lib/postgresql/15 were all missing, and Next.js/FastAPI processes were gone. Recovery steps performed: (1) `useradd -r postgres` to recreate postgres OS user; (2) `apt-get install -y postgresql-15` to restore binaries + new cluster; (3) `/usr/bin/supervisord -c /etc/supervisor/supervisord.conf` to bring supervisor back; (4) `chown -R postgres:postgres /var/lib/postgresql /var/log/postgresql /etc/postgresql`; (5) `supervisorctl start postgresql`; (6) `psql -c \"CREATE USER receptify WITH PASSWORD 'receptify_pass' SUPERUSER; CREATE DATABASE receptify OWNER receptify;\"`; (7) `cd /app/frontend && yarn db:seed` (this runs migrations + seed); (8) `supervisorctl restart frontend backend` to reset stale DB pool. After these steps all services returned to healthy state and tests passed. Main agent should consider scripting an idempotent bootstrap to handle this scenario automatically on container start."
+}
