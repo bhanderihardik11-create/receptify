@@ -1,0 +1,100 @@
+{
+  "theme": "LIGHT",
+  "archetype": "Archetype 1 (Organic & Earthy / Trust) combined with Archetype 3 (Pastel & Soft) via Glassmorphism",
+  "typography": {
+    "font_family": {
+      "heading": "Plus Jakarta Sans, sans-serif",
+      "body": "Plus Jakarta Sans, sans-serif"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0D1B3E]",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F172A]",
+      "h3": "text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]",
+      "h4": "text-lg sm:text-xl font-semibold text-[#0F172A]",
+      "body_large": "text-lg text-slate-700",
+      "body": "text-base text-slate-600",
+      "small": "text-sm text-slate-500",
+      "overline": "text-xs font-bold uppercase tracking-[0.2em] text-[#2563EB]"
+    }
+  },
+  "colors": {
+    "primary": {
+      "gradient": "bg-gradient-to-r from-[#2563EB] to-[#1D4ED8]",
+      "base": "#2563EB",
+      "hover": "#1D4ED8",
+      "50": "#EFF6FF",
+      "100": "#DBEAFE",
+      "400": "#60A5FA",
+      "500": "#3B82F6",
+      "700": "#1D4ED8",
+      "900": "#1E3A8A"
+    },
+    "neutral": {
+      "bg_light": "#FFFFFF",
+      "bg_ambient": "#F8FAFC",
+      "text_main": "#0F172A",
+      "text_muted": "#475569",
+      "border": "#E2E8F0"
+    },
+    "brand": {
+      "dark_navy": "#0D1B3E",
+      "white": "#FFFFFF"
+    }
+  },
+  "glassmorphism_recipe": {
+    "surface_strategy": "Crystal Glass for floating panels, Solid for heavy data to ensure legibility.",
+    "card_glass": "bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(37,99,235,0.06)]",
+    "card_solid": "bg-white border border-[#E2E8F0] shadow-sm rounded-2xl",
+    "header_glass": "bg-white/80 backdrop-blur-md border-b border-white/50",
+    "sidebar": "bg-[#F8FAFC]/90 backdrop-blur-lg border-r border-[#E2E8F0]"
+  },
+  "layout_spacing": {
+    "philosophy": "Generous Spacing (p-6, p-8, p-12) to feel premium, accessible, and reduce cognitive load for non-technical users.",
+    "dashboard_grid": "The Control Room Grid - grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "marketing_grid": "The Tetris Grid - grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12",
+    "border_radius": {
+      "sm": "rounded-lg",
+      "md": "rounded-xl",
+      "lg": "rounded-2xl",
+      "full": "rounded-full"
+    }
+  },
+  "components": {
+    "button": {
+      "primary": "bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white font-semibold rounded-xl px-6 py-3 shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)] hover:-translate-y-0.5 transition-all duration-200",
+      "secondary": "bg-white text-[#1D4ED8] border border-[#DBEAFE] font-semibold rounded-xl px-6 py-3 hover:bg-[#EFF6FF] transition-colors duration-200",
+      "ghost": "bg-transparent text-slate-600 hover:text-[#2563EB] hover:bg-[#EFF6FF] px-4 py-2 rounded-xl transition-colors duration-200"
+    },
+    "input": "w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-[#0F172A] focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent outline-none transition-all placeholder-slate-400",
+    "charts": {
+      "style": "Clean Line/Bar charts. No 3D. Glass axes/gridlines (faint, blurred lines) while keeping data bars solid and high-contrast (#2563EB). Tooltips should be glassmorphic."
+    },
+    "empty_states": "Abstract geometric shapes with subtle AI glowing orbs in #EFF6FF and #DBEAFE. Very clean, minimal illustrative style. Never use generic 'people' illustrations for empty states. Always include a primary CTA.",
+    "badges": "rounded-full px-3 py-1 text-xs font-semibold"
+  },
+  "marketing_site_guidelines": {
+    "hero_visual_direction": "Floating 'Frosted AI' glassmorphism dashboard cards overlapping diagonally over a very subtle ambient mesh background (#EFF6FF to #DBEAFE). Cards should show 'AI Script Generator' and a 'Call Analytics' pulse chart. Subtle glowing orb in #3B82F6 behind the glass cards for depth.",
+    "gradient_placements": "Ambient mesh background behind Hero and CTA sections using Blue 50 and Blue 100. Text gradients strictly on the 'AI Voice Receptionist' highlights using the Primary Gradient.",
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1782069327324-57353ef863fc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBidXNpbmVzcyUyMHByb2Zlc3Npb25hbCUyMG1vZGVybiUyMG9mZmljZXxlbnwwfHx8fDE3ODI1NzM0OTZ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "Hero / Use Cases",
+        "description": "Indian business professional using laptop in modern office. Trustworthy and premium, establishing context for Indian SMEs."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1673865641073-4479f93a7776?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBmZW1hbGUlMjBkb2N0b3IlMjBjbGluaWMlMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzgyNTczNDk2fDA&ixlib=rb-4.1.0&q=85",
+        "category": "Use Cases (Clinic)",
+        "description": "Indian female doctor in clinic, representing the clinic appointment reminder use case."
+      }
+    ]
+  },
+  "dashboard_guidelines": {
+    "sidebar_style": "Collapsible, solid #F8FAFC or very light glass, subtle right border (#E2E8F0). Icons use Lucide (thin stroke) with label. Active state gets a soft #EFF6FF background and #2563EB text.",
+    "kpi_cards": "Use the Card-in-Card pattern. The outer container is glass/solid, the inner stat has a subtle high-contrast pulse if live. Top-left card is the 'North Star' (e.g., Active Campaigns).",
+    "call_history_table": "Clean, generous row spacing (py-4), badge pills for status (Completed, Failed, Voicemail). Audio player should be inline and minimal.",
+    "ai_script_generator": "Side-by-side layout. Left: Input form. Right: Generated output cards with variants in glass containers."
+  },
+  "testing_attributes": {
+    "instructions": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case format. For example, data-testid='login-submit-button', data-testid='upload-csv-input', data-testid='generate-script-button'."
+  }
+}
